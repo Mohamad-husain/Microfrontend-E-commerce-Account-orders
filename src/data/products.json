@@ -1,0 +1,98 @@
+[
+  {
+    "id": "product-1",
+    "name": "Radiance Silk Foundation",
+    "brand": "LUMÉA SKIN",
+    "category": "Makeup",
+    "price": 54,
+    "oldPrice": null,
+    "shade": "Alabaster 01",
+    "image": "/images/wishlist-foundation.jpg",
+    "inStock": true,
+    "description": "A luminous, skin-like foundation with a breathable satin finish."
+  },
+  {
+    "id": "product-2",
+    "name": "Velvet Matte Lipstick",
+    "brand": "LUMÉA COLOR",
+    "category": "Makeup",
+    "price": 32,
+    "oldPrice": null,
+    "shade": "Midnight Rose",
+    "image": "/images/wishlist-lipstick.jpg",
+    "inStock": true,
+    "description": "Comfortable color with a soft velvet finish."
+  },
+  {
+    "id": "product-3",
+    "name": "Luminizing Glow Powder",
+    "brand": "LUMÉA COLOR",
+    "category": "Makeup",
+    "price": 42,
+    "oldPrice": null,
+    "shade": "Champagne",
+    "image": "/images/wishlist-powder.jpg",
+    "inStock": true,
+    "description": "A whisper-light powder for refined radiance."
+  },
+  {
+    "id": "product-4",
+    "name": "Signature Eau de Parfum",
+    "brand": "LUMÉA FRAGRANCE",
+    "category": "Fragrance",
+    "price": 125,
+    "oldPrice": null,
+    "shade": "50ml",
+    "image": "/images/wishlist-perfume.jpg",
+    "inStock": true,
+    "description": "A modern floral fragrance with warm amber notes."
+  },
+  {
+    "id": "product-5",
+    "name": "Radiance Illuminating Serum",
+    "brand": "LUMÉA SKIN",
+    "category": "Skincare",
+    "price": 68,
+    "oldPrice": 75,
+    "shade": "30ml",
+    "image": "/images/products/serum.svg",
+    "inStock": true,
+    "description": "A pearlescent serum that brightens and smooths."
+  },
+  {
+    "id": "product-6",
+    "name": "Velvet Matte Setting Powder",
+    "brand": "LUMÉA COLOR",
+    "category": "Makeup",
+    "price": 38,
+    "oldPrice": null,
+    "shade": "Translucent",
+    "image": "/images/products/setting.svg",
+    "inStock": true,
+    "description": "Finely milled setting powder for all-day softness."
+  },
+  {
+    "id": "product-7",
+    "name": "Radiance Night Cream",
+    "brand": "LUMÉA SKIN",
+    "category": "Skincare",
+    "price": 72,
+    "oldPrice": null,
+    "shade": "50ml",
+    "image": "/images/products/cream.svg",
+    "inStock": true,
+    "description": "Nourishing overnight moisture with botanical extracts."
+  },
+  {
+    "id": "product-8",
+    "name": "Botanical Cleansing Balm",
+    "brand": "LUMÉA SKIN",
+    "category": "Skincare",
+    "price": 45,
+    "oldPrice": null,
+    "shade": "100ml",
+    "image": "/images/products/balm.svg",
+    "inStock": true,
+    "description": "A silky balm that melts away makeup."
+  }
+]

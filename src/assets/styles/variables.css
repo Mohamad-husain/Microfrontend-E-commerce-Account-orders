@@ -1,0 +1,19 @@
+:root {
+  --lumea-primary: #64164f;
+  --lumea-secondary: #7d2b67;
+  --lumea-heading: #4a0d37;
+  --lumea-background: #fff8fa;
+  --lumea-pink: #fbe8ee;
+  --lumea-footer: #ffd7e2;
+  --lumea-border: #ead9df;
+  --lumea-muted: #7a6570;
+  --lumea-white: #ffffff;
+  --lumea-success: #4f7a5b;
+  --lumea-warning: #a36b25;
+  --lumea-error: #b3261e;
+  --lumea-radius-sm: 8px;
+  --lumea-radius-md: 12px;
+  --lumea-radius-lg: 18px;
+  --lumea-shadow: 0 5px 20px rgb(74 13 55 / 7%);
+  --lumea-page-gutter: clamp(1rem, 4vw, 4rem);
+}

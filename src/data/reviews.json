@@ -1,0 +1,32 @@
+[
+  {
+    "id": "review-1",
+    "userId": "user-001",
+    "productId": "product-1",
+    "status": "submitted",
+    "rating": 5,
+    "title": "Lightweight, radiant and natural.",
+    "comment": "This foundation blends beautifully and gives my skin a fresh, luminous finish without feeling heavy. It has become a staple in my everyday routine.",
+    "date": "Oct 12, 2023"
+  },
+  {
+    "id": "review-2",
+    "userId": "user-001",
+    "productId": "product-2",
+    "status": "submitted",
+    "rating": 4,
+    "title": "Beautiful colour that lasts.",
+    "comment": "The lipstick feels comfortable, applies smoothly, and stays polished for hours. The Midnight Rose shade is especially lovely for evening makeup.",
+    "date": "Sep 05, 2023"
+  },
+  {
+    "id": "review-3",
+    "userId": "user-001",
+    "productId": "product-1",
+    "status": "pending",
+    "rating": 0,
+    "title": "",
+    "comment": "",
+    "date": ""
+  }
+]

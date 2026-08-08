@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap");
+@import "./variables.css";
+
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#app {
+  min-width: 0;
+  min-height: 100%;
+  margin: 0;
+}
+html,
+body {
+  overflow-x: hidden;
+  background: var(--lumea-background);
+}
+body,
+button,
+input,
+textarea {
+  font-family: Inter, Arial, sans-serif;
+}
+
+.v-application {
+  color: #412837 !important;
+  background: var(--lumea-background) !important;
+  font-family: Inter, Arial, sans-serif !important;
+}
+
+.serif,
+.page-title,
+.lumea-logo {
+  font-family: "Playfair Display", Georgia, serif;
+}
+.page-title {
+  color: var(--lumea-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.08;
+}
+.muted {
+  color: var(--lumea-muted);
+}
+.eyebrow {
+  color: var(--lumea-muted);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.lumea-logo {
+  color: var(--lumea-heading);
+  font-size: 1.45rem;
+  font-weight: 600;
+  letter-spacing: -0.08em;
+}
+.lux-card {
+  border: 1px solid var(--lumea-border) !important;
+  border-radius: var(--lumea-radius-md) !important;
+  box-shadow: var(--lumea-shadow) !important;
+}
+.plum-btn {
+  color: var(--lumea-white) !important;
+  background: var(--lumea-primary) !important;
+}
+.v-field {
+  min-height: 44px;
+  border-radius: var(--lumea-radius-sm) !important;
+}
+.v-field--variant-outlined .v-field__outline__start,
+.v-field--variant-outlined .v-field__outline__end {
+  border-color: var(--lumea-border);
+}
+.v-btn {
+  min-height: 38px;
+}
+.v-btn--disabled {
+  opacity: 0.55;
+}
+img {
+  max-width: 100%;
+}
+.table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.account-grid {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 42px);
+}
+.sidebar-link.active {
+  background: var(--lumea-secondary) !important;
+  color: #fff !important;
+}
+
+:focus-visible {
+  outline: 3px solid #a85686;
+  outline-offset: 3px;
+}
+a {
+  color: var(--lumea-primary);
+}
+
+@media (max-width: 720px) {
+  .page-title {
+    font-size: 2rem;
+  }
+  .account-grid {
+    display: block;
+  }
+  .sidebar {
+    display: flex;
+    overflow-x: auto;
+    margin: 0 -8px 20px;
+    padding: 0 8px;
+  }
+  .sidebar .v-list {
+    display: flex;
+  }
+  .sidebar .v-list-item {
+    min-width: max-content;
+  }
+  .review-card {
+    flex-direction: column;
+  }
+  .review-card .ml-5 {
+    margin: 14px 0 0 !important;
+  }
+}
