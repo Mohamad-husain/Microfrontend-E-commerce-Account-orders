@@ -2,7 +2,7 @@
   <article class="wishlist-card">
     <div class="product-visual">
       <span class="saved-label">Saved item</span>
-      <img :src="product.image" :alt="product.name" class="product-image" />
+      <img :src="productImage" :alt="product.name" class="product-image" />
       <v-btn
         icon
         size="x-small"
@@ -11,7 +11,7 @@
         aria-label="Remove from wishlist"
         @click="$emit('remove')"
       >
-        <v-icon size="15">mdi-close</v-icon>
+        <AppIcon name="close" size="16" />
       </v-btn>
     </div>
 
@@ -31,7 +31,7 @@
         :disabled="!product.inStock"
         @click="$emit('move', product.id)"
       >
-        <v-icon start size="16">mdi-shopping-outline</v-icon>
+        <AppIcon name="shopping" size="16" class="mr-1" />
         Move to bag
       </v-btn>
     </div>
@@ -39,8 +39,16 @@
 </template>
 
 <script setup>
-defineProps({ product: Object });
+import { computed, inject } from "vue";
+import AppIcon from "@/components/common/AppIcon.vue";
+
+const props = defineProps({ product: Object });
 defineEmits(["remove", "move"]);
+const assetBase = inject("beauty-asset-base", "/");
+const productImage = computed(() => {
+  const image = props.product?.image || "";
+  return image.startsWith("/") ? `${assetBase}${image.slice(1)}` : image;
+});
 </script>
 
 <style scoped>
@@ -93,6 +101,7 @@ defineEmits(["remove", "move"]);
   color: #775260;
   background: #fff !important;
 }
+.remove-button .app-icon { color: #6d164f; }
 .product-content {
   padding: 15px;
 }

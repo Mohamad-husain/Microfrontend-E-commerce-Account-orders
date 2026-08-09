@@ -9,12 +9,7 @@
             : "Edit Review"
         }}
       </h2>
-      <v-rating
-        v-model="form.rating"
-        color="primary"
-        aria-label="Product rating"
-        class="my-3"
-      />
+      <StarRating v-model="form.rating" class="my-3" />
       <v-alert v-if="error" type="error" density="compact" variant="tonal" class="mb-4">
         {{ error }}
       </v-alert>
@@ -37,6 +32,7 @@
 <script setup>
 import { reactive, ref, watch } from "vue";
 import { useReviewsStore } from "@/stores/reviews";
+import StarRating from "@/components/reviews/StarRating.vue";
 const reviews = useReviewsStore(),
   form = reactive({ rating: 0, title: "", comment: "" });
 const error = ref("");

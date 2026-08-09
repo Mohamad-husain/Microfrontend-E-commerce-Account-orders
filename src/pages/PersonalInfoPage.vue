@@ -12,11 +12,12 @@
 
         <v-alert
           class="profile-tip"
-          icon="mdi-shield-check-outline"
+          :icon="false"
           density="compact"
           variant="tonal"
           color="primary"
         >
+          <template #prepend><AppIcon name="check" size="19" /></template>
           Keep your email and phone number current so we can send accurate delivery updates.
         </v-alert>
 
@@ -27,7 +28,6 @@
                 <p class="eyebrow">LUMÉA membership</p>
                 <h2>{{ auth.user?.membership || "LUMÉA Member" }}</h2>
               </div>
-              <v-icon size="34">mdi-sparkles</v-icon>
             </div>
             <div class="points-row">
               <strong>{{ auth.user?.rewardPoints || 0 }}</strong>
@@ -43,21 +43,21 @@
             <p class="eyebrow">Your LUMÉA activity</p>
             <div class="activity-list">
               <div>
-                <v-icon>mdi-shopping-outline</v-icon>
+                <AppIcon name="shopping" size="18" />
                 <span>
                   <strong>{{ orders.currentUserOrders.length }}</strong>
                   Orders
                 </span>
               </div>
               <div>
-                <v-icon>mdi-heart-outline</v-icon>
+                <AppIcon name="heart-outline" size="18" />
                 <span>
                   <strong>{{ wishlist.wishlistCount }}</strong>
                   Saved items
                 </span>
               </div>
               <div>
-                <v-icon>mdi-star-outline</v-icon>
+                <AppIcon name="star-outline" size="18" />
                 <span>
                   <strong>{{ reviews.submittedReviews.length }}</strong>
                   Reviews
@@ -152,6 +152,7 @@ import { useAuthStore } from "@/stores/auth";
 import { useOrdersStore } from "@/stores/orders";
 import { useReviewsStore } from "@/stores/reviews";
 import { useWishlistStore } from "@/stores/wishlist";
+import AppIcon from "@/components/common/AppIcon.vue";
 
 const auth = useAuthStore();
 const orders = useOrdersStore();
@@ -289,10 +290,6 @@ function save() {
   margin: 0;
   font-size: 1.25rem;
 }
-.member-card__top .v-icon {
-  color: #d66d9a;
-  opacity: 0.7;
-}
 .points-row {
   display: flex;
   align-items: baseline;
@@ -342,7 +339,7 @@ function save() {
   color: #6d5863;
   font-size: 0.76rem;
 }
-.activity-list .v-icon {
+.activity-list .app-icon {
   color: #7d2b67;
   font-size: 18px;
 }

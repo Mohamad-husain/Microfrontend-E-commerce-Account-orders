@@ -2,8 +2,6 @@ import { defineStore } from "pinia";
 import { getItem, initializeStorage, setItem } from "@/services/storageService";
 import { useAuthStore } from "./auth";
 
-const wishlistReviewProducts = ["product-1", "product-2"];
-
 export const useReviewsStore = defineStore("reviews", {
   state: () => ({
     reviews: [],
@@ -33,26 +31,6 @@ export const useReviewsStore = defineStore("reviews", {
     initialize() {
       initializeStorage();
       this.reviews = getItem("lumea_reviews", []);
-      this.migrateReviewsToWishlistProducts();
-    },
-    migrateReviewsToWishlistProducts() {
-      const userId = useAuthStore().user?.id;
-      if (!userId) return;
-      const migrationKey = `lumea_reviews_wishlist_products_v1_${userId}`;
-      if (getItem(migrationKey, false)) return;
-
-      let index = 0;
-      this.reviews = this.reviews.map((review) => {
-        if (review.userId !== userId || review.status !== "submitted") {
-          return review;
-        }
-        const productId = wishlistReviewProducts[index];
-        index += 1;
-        return productId ? { ...review, productId } : review;
-      });
-
-      this.persist();
-      setItem(migrationKey, true);
     },
     persist() {
       setItem("lumea_reviews", this.reviews);

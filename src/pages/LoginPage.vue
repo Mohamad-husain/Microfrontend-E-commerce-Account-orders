@@ -92,7 +92,7 @@
     </section>
 
     <aside class="visual-panel" aria-label="LUMÉA skincare collection">
-      <img src="/images/login-hero.jpg" alt="LUMÉA skincare collection" />
+      <img :src="loginHero" alt="LUMÉA skincare collection" />
       <div class="visual-overlay"></div>
       <div class="visual-copy">
         <p class="visual-kicker">LUMÉA Rituals</p>
@@ -113,7 +113,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { inject, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import LumeaLogo from "@/components/common/LumeaLogo.vue";
 import { useAuthStore } from "@/stores/auth";
@@ -128,6 +128,8 @@ const show = ref(false);
 const errors = ref({});
 const showSnack = ref(false);
 const message = ref("");
+const assetBase = inject("beauty-asset-base", "/");
+const loginHero = `${assetBase}images/login-hero.jpg`;
 
 const snack = (text) => {
   message.value = text;

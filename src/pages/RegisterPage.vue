@@ -2,7 +2,7 @@
   <main class="register-page">
     <aside class="register-visual" aria-label="LUMÉA botanical radiance serum">
       <img
-        src="/images/register-hero.jpg"
+        :src="registerHero"
         alt="LUMÉA botanical radiance serum"
       />
       <div class="visual-shade"></div>
@@ -161,7 +161,7 @@
 </template>
 
 <script setup>
-import { computed, reactive, ref } from "vue";
+import { computed, inject, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import LumeaLogo from "@/components/common/LumeaLogo.vue";
 import { useAuthStore } from "@/stores/auth";
@@ -183,6 +183,8 @@ const show = ref(false);
 const showConfirm = ref(false);
 const showSnack = ref(false);
 const message = ref("");
+const assetBase = inject("beauty-asset-base", "/");
+const registerHero = `${assetBase}images/register-hero.jpg`;
 
 const strength = computed(() =>
   Math.min(

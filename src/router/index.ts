@@ -49,6 +49,7 @@ export const shellPathForRoute = (path: string) => ({
 }[path] || '/profile');
 
 export function createAccountRouter(embedded = false) {
+let hasCompletedInitialNavigation = false;
 const router = createRouter({
   history: embedded ? createMemoryHistory() : createWebHistory(import.meta.env.BASE_URL),
   routes,
@@ -70,7 +71,21 @@ router.beforeEach((to) => {
   return true;
 });
 
-if (embedded) router.afterEach((to) => window.dispatchEvent(new CustomEvent('beauty:navigate', { detail: { to: shellPathForRoute(to.path) } })));
+if (embedded) {
+  router.afterEach((to) => {
+    // The first memory-router transition is framework initialization. The Shell
+    // already owns the requested URL, so emitting it can overwrite /wishlist
+    // (or another requested route) with the router's default profile route.
+    if (hasCompletedInitialNavigation) {
+      window.dispatchEvent(
+        new CustomEvent('beauty:navigate', {
+          detail: { to: shellPathForRoute(to.path) },
+        }),
+      );
+    }
+    hasCompletedInitialNavigation = true;
+  });
+}
 
 return router;
 }

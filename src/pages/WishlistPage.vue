@@ -10,7 +10,7 @@
             <p>Keep your favourite LUMÉA pieces close for your next ritual.</p>
           </div>
           <div class="wishlist-count">
-            <v-icon size="17">mdi-heart</v-icon>
+            <AppIcon name="heart" size="17" />
             <span>{{ wishlist.wishlistCount }} saved</span>
           </div>
         </header>
@@ -18,7 +18,7 @@
         <div v-if="wishlist.wishlistCount" class="wishlist-tools">
           <p>Items in your collection are ready whenever you are.</p>
           <v-btn variant="text" size="small" @click="moveAll">
-            <v-icon start size="17">mdi-shopping-outline</v-icon>
+            <AppIcon name="shopping" size="17" class="mr-1" />
             Move all to bag
           </v-btn>
         </div>
@@ -47,11 +47,12 @@
         <v-alert
           v-if="wishlist.wishlistCount"
           class="wishlist-note"
-          icon="mdi-sparkles"
+          :icon="false"
           density="compact"
           variant="tonal"
           color="primary"
         >
+          <template #prepend><AppIcon name="sparkle" size="19" /></template>
           <strong>Your edit, saved.</strong>
           <span> Prices and availability can change, but your beauty favourites stay right here.</span>
         </v-alert>
@@ -72,13 +73,14 @@
 </template>
 
 <script setup>
-import { computed, onMounted, reactive, ref } from "vue";
+import { computed, onBeforeUnmount, onMounted, reactive, ref } from "vue";
 import AccountLayout from "@/layouts/AccountLayout.vue";
 import AccountSidebar from "@/components/account/AccountSidebar.vue";
 import EmptyState from "@/components/common/EmptyState.vue";
 import ConfirmDialog from "@/components/common/ConfirmDialog.vue";
 import WishlistProductCard from "@/components/wishlist/WishlistProductCard.vue";
 import { useWishlistStore } from "@/stores/wishlist";
+import AppIcon from "@/components/common/AppIcon.vue";
 
 const wishlist = useWishlistStore();
 const pending = ref(null);
@@ -90,7 +92,12 @@ const confirm = computed({
   },
 });
 
-onMounted(() => wishlist.initialize());
+const refreshWishlist = () => wishlist.refreshFromStorage();
+onMounted(() => {
+  wishlist.initialize();
+  window.addEventListener("beauty:wishlist:updated", refreshWishlist);
+});
+onBeforeUnmount(() => window.removeEventListener("beauty:wishlist:updated", refreshWishlist));
 
 function remove() {
   wishlist.removeProduct(pending.value);

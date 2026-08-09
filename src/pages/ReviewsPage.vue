@@ -34,7 +34,7 @@
             </div>
             <EmptyState
               v-else
-              icon="mdi-star-outline"
+              icon="mdi-check-circle-outline"
               title="No reviews yet"
               message="When you share your experience, your reviews will appear here."
             />
@@ -51,7 +51,7 @@
             </div>
             <EmptyState
               v-else
-              icon="mdi-check-circle-outline"
+              icon="mdi-star-outline"
               title="You are all caught up"
               message="There are no products waiting for your review."
             />
@@ -94,7 +94,17 @@ const confirm = computed({
   },
 });
 
-onMounted(() => reviews.initialize());
+onMounted(() => {
+  reviews.initialize();
+  const reviewId = localStorage.getItem("lumea_open_review_product");
+  if (!reviewId) return;
+  const review = reviews.reviews.find((item) => item.id === reviewId);
+  localStorage.removeItem("lumea_open_review_product");
+  if (review) {
+    reviews.activeTab = "pending";
+    reviews.openEditDialog(review);
+  }
+});
 
 function remove() {
   reviews.deleteReview(pending.value);

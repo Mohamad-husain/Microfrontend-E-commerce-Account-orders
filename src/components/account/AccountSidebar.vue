@@ -3,7 +3,7 @@
     <div class="profile-identity">
       <v-avatar size="46" class="profile-avatar">
         <img
-          :src="auth.user?.avatar || '/images/profile-placeholder.svg'"
+          :src="profileImage"
           alt="User profile"
           @error="usePlaceholder"
         />
@@ -19,18 +19,18 @@
         v-for="item in items"
         :key="item.to"
         :to="item.to"
-        :prepend-icon="item.icon"
         class="sidebar-link"
         active-class="active"
       >
+        <template #prepend><AppIcon :name="item.icon" size="19" /></template>
         {{ item.label }}
       </v-list-item>
       <v-divider class="my-2" />
       <v-list-item
         class="sidebar-link"
-        prepend-icon="mdi-logout"
         @click="signout"
       >
+        <template #prepend><AppIcon name="logout" size="19" /></template>
         Sign Out
       </v-list-item>
     </v-list>
@@ -38,20 +38,28 @@
 </template>
 
 <script setup>
+import { computed, inject } from "vue";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
+import AppIcon from "@/components/common/AppIcon.vue";
 
 const router = useRouter();
 const auth = useAuthStore();
+const assetBase = inject("beauty-asset-base", "/");
+const assetUrl = (path) =>
+  String(path || "").startsWith("/") ? `${assetBase}${path.slice(1)}` : path;
+const profileImage = computed(() =>
+  assetUrl(auth.user?.avatar || "/images/profile-placeholder.svg"),
+);
 const items = [
   {
     label: "Personal Info",
     to: "/account/profile",
-    icon: "mdi-account-outline",
+    icon: "account",
   },
-  { label: "Orders", to: "/account/orders", icon: "mdi-bag-personal-outline" },
-  { label: "Wishlist", to: "/account/wishlist", icon: "mdi-heart-outline" },
-  { label: "My Reviews", to: "/account/reviews", icon: "mdi-star-outline" },
+  { label: "Orders", to: "/account/orders", icon: "bag" },
+  { label: "Wishlist", to: "/account/wishlist", icon: "heart-outline" },
+  { label: "My Reviews", to: "/account/reviews", icon: "star-outline" },
 ];
 
 function signout() {
@@ -60,7 +68,7 @@ function signout() {
 }
 
 function usePlaceholder(event) {
-  event.target.src = "/images/profile-placeholder.svg";
+  event.target.src = assetUrl("/images/profile-placeholder.svg");
 }
 </script>
 

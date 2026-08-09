@@ -43,7 +43,7 @@ The UI follows Material Design through Vuetify and the shared LUMÉA visual iden
 
 ## Run locally
 
-**Requirements:** Node.js 20+ and npm.
+**Requirements:** Node.js 22+ and npm. The configured ESLint toolchain uses `Object.groupBy`, which requires Node 22 or a runtime with that API.
 
 ```bash
 npm install

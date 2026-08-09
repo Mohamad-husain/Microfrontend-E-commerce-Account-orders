@@ -1,7 +1,7 @@
 <template>
   <article class="review-card" :class="{ 'is-pending': pending }">
     <div class="review-image-wrap">
-      <img :src="product?.image" :alt="product?.name || 'LUMÉA product'" />
+      <img :src="productImage" :alt="product?.name || 'LUMÉA product'" />
     </div>
 
     <div class="review-content">
@@ -38,7 +38,7 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, inject } from "vue";
 import StarRating from "./StarRating.vue";
 
 const props = defineProps({ review: Object, pending: Boolean });
@@ -49,6 +49,11 @@ const product = computed(() =>
     (item) => item.id === props.review.productId,
   ),
 );
+const assetBase = inject("beauty-asset-base", "/");
+const productImage = computed(() => {
+  const image = product.value?.image || "";
+  return image.startsWith("/") ? `${assetBase}${image.slice(1)}` : image;
+});
 </script>
 
 <style scoped>

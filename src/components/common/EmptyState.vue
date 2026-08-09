@@ -1,6 +1,6 @@
 <template>
   <section class="empty-state" :aria-label="title">
-    <v-icon :icon="icon" color="primary" size="46" />
+    <AppIcon :name="iconName" size="46" class="empty-icon" />
     <h2 class="serif">{{ title }}</h2>
     <p>{{ message }}</p>
     <slot name="action" />
@@ -8,11 +8,20 @@
 </template>
 
 <script setup>
-defineProps({
+import { computed } from "vue";
+import AppIcon from "@/components/common/AppIcon.vue";
+
+const props = defineProps({
   icon: { type: String, default: "mdi-package-variant-closed" },
   title: { type: String, default: "Nothing here yet" },
   message: { type: String, default: "There is nothing to show right now." },
 });
+const iconName = computed(() => ({
+  "mdi-heart-outline": "heart-outline",
+  "mdi-star-outline": "star-outline",
+  "mdi-check-circle-outline": "check",
+  "mdi-package-variant-closed": "bag",
+}[props.icon] || "bag"));
 </script>
 
 <style scoped>
@@ -25,6 +34,7 @@ defineProps({
   color: var(--lumea-muted);
   text-align: center;
 }
+.empty-icon { color: #7d2b67; }
 h2 {
   margin: 14px 0 6px;
   color: var(--lumea-heading);

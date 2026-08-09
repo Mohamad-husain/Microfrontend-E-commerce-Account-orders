@@ -28,7 +28,6 @@
               class="order-search"
               density="compact"
               hide-details
-              prepend-inner-icon="mdi-magnify"
               placeholder="Search order number"
               variant="outlined"
               @update:model-value="orders.setSearchQuery"
@@ -131,7 +130,7 @@
               <v-divider class="my-5" />
               <div class="order-total-row"><span>Total paid</span><strong>${{ selectedOrder.total.toFixed(2) }}</strong></div>
               <p class="address-copy">
-                <v-icon size="17">mdi-map-marker-outline</v-icon>
+                <AppIcon name="location" size="17" />
                 {{ selectedOrder.shippingAddress.line1 }}, {{ selectedOrder.shippingAddress.city }}
               </p>
             </v-card-text>
@@ -158,6 +157,7 @@ import AccountLayout from "@/layouts/AccountLayout.vue";
 import AccountSidebar from "@/components/account/AccountSidebar.vue";
 import OrderStatusChip from "@/components/orders/OrderStatusChip.vue";
 import { useOrdersStore } from "@/stores/orders";
+import AppIcon from "@/components/common/AppIcon.vue";
 
 const orders = useOrdersStore();
 const snack = reactive({ show: false, text: "" });
@@ -250,6 +250,7 @@ function buyAgain(order) {
   width: min(100%, 430px);
 }
 .status-filter {
+  position: relative;
   width: 145px;
 }
 .order-search {
@@ -270,6 +271,20 @@ function buyAgain(order) {
 .order-search :deep(.v-field--focused),
 .status-filter :deep(.v-field--focused) {
   box-shadow: 0 0 0 3px rgb(139 49 95 / 9%);
+}
+.status-filter :deep(.v-select__menu-icon) { display: none; }
+.status-filter::after {
+  position: absolute;
+  z-index: 2;
+  top: 15px;
+  right: 15px;
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid #7d2b67;
+  border-bottom: 2px solid #7d2b67;
+  content: "";
+  pointer-events: none;
+  transform: rotate(45deg);
 }
 .results-copy {
   margin: -10px 0 14px;
@@ -409,7 +424,7 @@ function buyAgain(order) {
   color: #806a75;
   font-size: 0.74rem;
 }
-.address-copy .v-icon { color: #7d2b67; }
+.address-copy .app-icon { color: #7d2b67; }
 @media (max-width: 720px) {
   .orders-header {
     align-items: stretch;
