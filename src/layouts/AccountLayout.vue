@@ -1,11 +1,13 @@
 <template>
-  <AppHeader />
+  <AppHeader v-if="!hideChrome" />
   <main class="account-shell"><slot /></main>
-  <AppFooter />
+  <AppFooter v-if="!hideChrome" />
 </template>
 <script setup>
 import AppHeader from "@/components/common/AppHeader.vue";
 import AppFooter from "@/components/common/AppFooter.vue";
+import { inject } from "vue";
+const hideChrome = inject("beauty-hide-chrome", false);
 </script>
 <style scoped>
 .account-shell {

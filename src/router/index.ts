@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createMemoryHistory, createRouter, createWebHistory } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
 
 const routes = [
@@ -44,8 +44,13 @@ const routes = [
   },
 ];
 
+export const shellPathForRoute = (path: string) => ({
+  '/login': '/login', '/register': '/register', '/account/profile': '/profile', '/account/orders': '/orders', '/account/wishlist': '/wishlist', '/account/reviews': '/reviews', '/account': '/profile', '/': '/profile',
+}[path] || '/profile');
+
+export function createAccountRouter(embedded = false) {
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: embedded ? createMemoryHistory() : createWebHistory(import.meta.env.BASE_URL),
   routes,
   scrollBehavior: () => ({ top: 0, left: 0 }),
 });
@@ -65,4 +70,9 @@ router.beforeEach((to) => {
   return true;
 });
 
-export default router;
+if (embedded) router.afterEach((to) => window.dispatchEvent(new CustomEvent('beauty:navigate', { detail: { to: shellPathForRoute(to.path) } })));
+
+return router;
+}
+
+export default createAccountRouter();
