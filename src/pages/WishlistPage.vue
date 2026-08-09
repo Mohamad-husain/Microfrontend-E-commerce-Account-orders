@@ -44,16 +44,17 @@
           </template>
         </EmptyState>
 
-        <aside v-if="wishlist.wishlistCount" class="wishlist-note">
-          <v-icon size="19">mdi-sparkles</v-icon>
-          <div>
-            <strong>Your edit, saved.</strong>
-            <p>
-              Prices and availability can change, but your beauty favourites
-              stay right here.
-            </p>
-          </div>
-        </aside>
+        <v-alert
+          v-if="wishlist.wishlistCount"
+          class="wishlist-note"
+          icon="mdi-sparkles"
+          density="compact"
+          variant="tonal"
+          color="primary"
+        >
+          <strong>Your edit, saved.</strong>
+          <span> Prices and availability can change, but your beauty favourites stay right here.</span>
+        </v-alert>
 
         <ConfirmDialog
           v-model="confirm"
@@ -191,25 +192,17 @@ function shop() {
   gap: 16px;
 }
 .wishlist-note {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
   max-width: 530px;
   margin: 24px auto 0;
-  padding: 13px 15px;
   border-radius: 11px;
   color: #70525f;
   background: #fff2f5;
-}
-.wishlist-note .v-icon {
-  color: #8d3966;
 }
 .wishlist-note strong {
   color: #5a173f;
   font-size: 0.75rem;
 }
-.wishlist-note p {
-  margin: 3px 0 0;
+.wishlist-note span {
   font-size: 0.69rem;
   line-height: 1.45;
 }

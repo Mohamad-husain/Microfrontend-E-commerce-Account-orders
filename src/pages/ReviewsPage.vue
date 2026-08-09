@@ -32,9 +32,12 @@
                 @delete="pending = review.id"
               />
             </div>
-            <p v-else class="empty-copy">
-              You have not submitted any reviews yet.
-            </p>
+            <EmptyState
+              v-else
+              icon="mdi-star-outline"
+              title="No reviews yet"
+              message="When you share your experience, your reviews will appear here."
+            />
           </v-window-item>
           <v-window-item value="pending">
             <div v-if="reviews.pendingReviews.length" class="review-list">
@@ -46,9 +49,12 @@
                 @edit="reviews.openEditDialog(review)"
               />
             </div>
-            <p v-else class="empty-copy">
-              There are no products waiting for your review.
-            </p>
+            <EmptyState
+              v-else
+              icon="mdi-check-circle-outline"
+              title="You are all caught up"
+              message="There are no products waiting for your review."
+            />
           </v-window-item>
         </v-window>
 
@@ -73,6 +79,7 @@ import { computed, onMounted, reactive, ref } from "vue";
 import AccountLayout from "@/layouts/AccountLayout.vue";
 import AccountSidebar from "@/components/account/AccountSidebar.vue";
 import ConfirmDialog from "@/components/common/ConfirmDialog.vue";
+import EmptyState from "@/components/common/EmptyState.vue";
 import ReviewCard from "@/components/reviews/ReviewCard.vue";
 import ReviewFormDialog from "@/components/reviews/ReviewFormDialog.vue";
 import { useReviewsStore } from "@/stores/reviews";

@@ -10,6 +10,16 @@
           <p>Manage your profile, favourites, orders, and beauty rituals.</p>
         </header>
 
+        <v-alert
+          class="profile-tip"
+          icon="mdi-shield-check-outline"
+          density="compact"
+          variant="tonal"
+          color="primary"
+        >
+          Keep your email and phone number current so we can send accurate delivery updates.
+        </v-alert>
+
         <div class="profile-summary">
           <article class="member-card">
             <div class="member-card__top">
@@ -243,6 +253,12 @@ function save() {
   margin: 8px 0 0;
   color: var(--lumea-muted);
   font-size: 0.84rem;
+}
+.profile-tip {
+  margin: 0 0 18px;
+  border-radius: 12px;
+  color: #70525f;
+  font-size: 0.74rem;
 }
 .profile-summary {
   display: grid;
